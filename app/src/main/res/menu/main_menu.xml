@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/item1"
+        android:title="Search"
+        app:showAsAction="always"
+        android:icon="@drawable/white_search"/>
+    <item android:id="@+id/item2"
+        android:title="Replace" />
+
+    <item android:id="@+id/item3"
+        android:title="Delete" />
+
+    <item android:id="@+id/item4"
+        android:title="Share" />
+
+    <item android:id="@+id/item5"
+        android:title="Settings" />
+</menu>
