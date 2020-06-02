@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button matchButton;
     TextView result;
     AlertDialog.Builder builder;
+    String str1, str2;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    String name1 = removeSpaces(String.valueOf(firstName.getText()));
-                    String name2 = removeSpaces(String.valueOf(secondName.getText()));
+                    str1 = String.valueOf(firstName.getText());
+                    str2 = String.valueOf(secondName.getText());
+                    String name1 = removeSpaces(str1);
+                    String name2 = removeSpaces(str2);
                     if (name1.isEmpty() || name2.isEmpty()) {
                         firstName.setError("Both names required");
                         secondName.setError("Both names required");
@@ -61,8 +64,11 @@ public class MainActivity extends AppCompatActivity {
                                     str += ch2[i];
                                 }
                             }
-                            char ch = relation(str.length());
-                            final String resStr = relationShip(ch);
+                            char ch=0;
+                            if (str.length() > 0) {
+                                ch = relation(str.length());
+                            }
+                            final String resStr = relationShip(ch!=0 ? (ch) : ('f'));
                             result.setText(resStr);
                             builder.setMessage(resStr)
                                     .setTitle("Relationship")
@@ -72,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             Intent share = new Intent(Intent.ACTION_SEND);
                                             share.setType("text/plain");
-                                            String shareString="Names :"+String.valueOf(firstName.getText())+" , " + String.valueOf(secondName.getText()) +"\n"+ resStr;
+                                            String shareString = "Names :" + str1 + " , " + str1 + "\n" + resStr + " by Flames";
                                             share.putExtra(Intent.EXTRA_TEXT, shareString);
                                             startActivity(Intent.createChooser(share, "Share via"));
                                             dialogInterface.dismiss();
